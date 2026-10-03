@@ -15,5 +15,17 @@ public class player : MonoBehaviour
     {
         horizontal_input = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(horizontal_input * speed,rb.linearVelocity.y);
+        Flip();
+    }
+    private void Flip()
+    {
+        if (horizontal_input > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (horizontal_input < 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 }
