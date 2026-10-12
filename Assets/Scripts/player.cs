@@ -9,14 +9,18 @@ public class player : MonoBehaviour
     public Transform groundCheck; //Точка под ногами персонажа
     private float groundCheckRadius = 0.2f; //Радиус круга сенсора
     public LayerMask groundLayer; // Слой земли
-    
-    private bool isGrounded; // Переменная для проверки земли
+
+    private Animator anim; // Добавили аниматор
     private Rigidbody2D rb; // Подключаем физику
     private float horizontal_input; // Переменная для движения по оси X
+    public bool isGrounded; // Переменная для проверки земли
+    
     void Start()
     {
         //Находим компонент физики один раз при старте
         rb = GetComponent<Rigidbody2D>();
+        //Находим компонент Animator
+        anim = GetComponent<Animator>();
     }
 
     
@@ -38,6 +42,13 @@ public class player : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
+        if(anim != null)
+        {
+            anim.SetFloat("speed", Mathf.Abs(horizontal_input));
+            anim.SetBool("IsGround", isGrounded);
+        }
+
     }
     private void Flip()
     {
