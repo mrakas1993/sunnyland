@@ -20,5 +20,13 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth + _add, 0, startingHealth);
     }
-    
+    private void Update()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            AddHealth(1);
+        }
+    }
+
 }
