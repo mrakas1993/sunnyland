@@ -165,4 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8114f1b460c4042a8e1d4bcc1c3397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cherry
-  add: 1
+  add: 0.5
