@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
+    [Header("Звуки игрока")]
+    public AudioSource playerAudio; //Наша колонка
+    public AudioClip jumpSound; //Звук прыжка
     [Header("Настройка движения")]
     public float speed = 5f; //Скорость бега
     public float jumpForce = 12f; //Сила прыжка
@@ -21,6 +24,8 @@ public class player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //Находим компонент Animator
         anim = GetComponent<Animator>();
+        //Находим компонент AudioSource на игроке
+        playerAudio = GetComponent<AudioSource>();
     }
 
     
@@ -41,6 +46,7 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            playerAudio.PlayOneShot(jumpSound);
         }
 
         if(anim != null)

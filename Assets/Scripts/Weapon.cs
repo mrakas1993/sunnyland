@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public AudioSource plaudio;
+    public AudioClip shootSound; //звук выстрела
     public Transform shootPos;
     public GameObject bullet;
     public float fireRate = 0.3f;
@@ -14,6 +16,7 @@ public class Weapon : MonoBehaviour
         {
             Instantiate(bullet,shootPos.transform.position,transform.rotation);
             nextFireTime = Time.time + fireRate;
+            plaudio.PlayOneShot(shootSound);
         }
     }
 }
