@@ -3,7 +3,8 @@ using UnityEngine;
 public class Gem : MonoBehaviour
 {
     private int gemValue = 1; //Сколько очков дает
-                             
+    public AudioClip gemSound;
+    
 
     //Срабатывает, когда сквозь гем проходит другой коллайдер
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,6 +17,7 @@ public class Gem : MonoBehaviour
             {
                 CoinManager.instance.AddCoins(gemValue);
             }
+            AudioSource.PlayClipAtPoint(gemSound, Camera.main.transform.position);
             //2. Уничтожить объект 
             Destroy(gameObject);
         }

@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc608c21f3849245b89a42f90b04cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gem
+  gemSound: {fileID: 8300000, guid: d719d3cc76dd98749aed31406abcc468, type: 3}

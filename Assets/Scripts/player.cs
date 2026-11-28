@@ -5,6 +5,7 @@ public class player : MonoBehaviour
     [Header("Звуки игрока")]
     public AudioSource playerAudio; //Наша колонка
     public AudioClip jumpSound; //Звук прыжка
+    public AudioSource walkSound; //Звук движения
     [Header("Настройка движения")]
     public float speed = 5f; //Скорость бега
     public float jumpForce = 12f; //Сила прыжка
@@ -31,6 +32,7 @@ public class player : MonoBehaviour
     
     void Update()
     {
+        FootSteps();
         //Считываем нажатия клавиш ( по горизонтале то есть вправо и влево)
         horizontal_input = Input.GetAxisRaw("Horizontal");
         //Задаем движение персонажа с помощью физики по оси x, а по оси Y сохраняем
@@ -75,6 +77,28 @@ public class player : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheck.position,groundCheckRadius);
+        }
+    }
+    private void FootSteps()
+    {
+        if(walkSound == null)
+        {
+            return;
+        }
+        bool isWalking = isGrounded && Mathf.Abs(horizontal_input) > 0.1f;
+        if (isWalking)
+        {
+            if (!walkSound.isPlaying)
+            {
+                walkSound.Play();
+            }
+        }
+        else
+        {
+            if (walkSound.isPlaying)
+            {
+                walkSound.Stop();
+            }
         }
     }
 }
